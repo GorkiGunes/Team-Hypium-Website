@@ -100,10 +100,15 @@ Kurallar:
 
     const data = await response.json();
 
-    const answer =
-      data?.choices?.[0]?.message?.content ||
-      "Şu anda cevap oluşturamadım.";
+    console.log("HF RESPONSE:", JSON.stringify(data));
 
+const messageData = data?.choices?.[0]?.message;
+
+const answer =
+  messageData?.content ||
+  messageData?.reasoning_content ||
+  data?.generated_text ||
+  "Şu anda cevap oluşturamadım.";
     return new Response(
       JSON.stringify({ answer }),
       {
