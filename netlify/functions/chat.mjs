@@ -46,11 +46,11 @@ export default async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "Qwen/Qwen3-8B:fastest",
-          messages: [
-            {
-              role: "system",
-              content: `
+  model: "Qwen/Qwen3-8B:fastest",
+  messages: [
+    {
+      role: "system",
+      content: `
 Sen Hypium FRC Team #11920 web sitesi için çalışan resmi yapay zeka asistanısın.
 
 Sadece şu konularda yardımcı ol:
@@ -69,19 +69,22 @@ Kurallar:
 - Kısa, anlaşılır ve profesyonel cevap ver.
 - Türkçe soruya Türkçe cevap ver.
 - İngilizce soruya İngilizce cevap ver.
-- Hypium ile ilgisiz sorulara nazikçe yalnızca Hypium ve FRC hakkında yardımcı olabileceğini söyle.
-              `.trim(),
-            },
-            {
-              role: "user",
-              content: message,
-            },
-          ],
-          max_tokens: 300,
-          temperature: 0.4,
-        }),
-      }
-    );
+- Hypium ile ilgisiz sorulara yalnızca Hypium ve FRC hakkında yardımcı olabileceğini söyle.
+      `.trim(),
+    },
+    {
+      role: "user",
+      content: message,
+    },
+  ],
+
+  max_tokens: 500,
+  temperature: 0.7,
+
+  chat_template_kwargs: {
+    enable_thinking: false
+  }
+}),
 
     if (!response.ok) {
       const errorText = await response.text();
