@@ -46,7 +46,7 @@ export default async (req) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-  model: "Qwen/Qwen3-8B:fastest",
+  model: "Qwen/Qwen2.5-7B-Instruct-1M:fastest",
   messages: [
     {
       role: "system",
