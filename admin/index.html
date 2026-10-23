@@ -1,12 +1,53 @@
+
 <!doctype html>
 <html lang="tr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hypium Admin</title>
+  <meta name="robots" content="noindex, nofollow">
+  <title>Hypium | Admin Dashboard</title>
+  <link rel="stylesheet" href="./admin.css">
 </head>
 <body>
-  <h1>Hypium Admin Dashboard</h1>
-  <p>Yönetim paneli kurulum aşamasında.</p>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="../assets/logo.png" alt="Hypium"
+             onerror="this.style.display='none'">
+        <div>
+          <strong>HYPIUM</strong>
+          <div class="admin-muted">Yönetim Paneli</div>
+        </div>
+      </div>
+
+      <nav class="admin-nav" aria-label="Yönetim menüsü">
+        <a href="#overview" aria-current="page">Genel Bakış</a>
+        <a href="#news">Haberler</a>
+        <a href="#announcements">Duyurular</a>
+        <a href="#impact">Sosyal Sorumluluk</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#team">Takım Üyeleri</a>
+        <a href="#settings">Ayarlar</a>
+      </nav>
+    </aside>
+
+    <main class="admin-main" id="overview">
+      <p class="admin-muted">HYPIUM FRC #11920</p>
+      <h1>Genel Bakış</h1>
+      <p class="admin-muted">
+        Takımının web sitesi içeriklerini buradan yöneteceksin.
+      </p>
+
+      <div class="admin-card">
+        <h2>Yönetim paneli hazırlanıyor</h2>
+        <p>
+          Bu arayüz henüz veritabanına bağlı değil.
+          İçerikler kalıcı olarak kaydedilene kadar burada
+          haber yayımlama işlemi yapılmamalıdır.
+        </p>
+      </div>
+    </main>
+  </div>
 </body>
 </html>
+
