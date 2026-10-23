@@ -1,17 +1,24 @@
 
-function json(data, status = 200) {
+import { createSession } from "../../../_lib/auth.js";
+
+function json(data, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-store"
+      "Cache-Control": "no-store",
+      ...extraHeaders
     }
   });
 }
 
 export async function onRequestPost({ request, env }) {
-  if (!env.ADMIN_USERNAME || !env.ADMIN_PASSWORD) {
-    return json({ error: "Giriş sistemi henüz yapılandırılmadı." }, 503);
+  if (!env.ADMIN_USERNAME || !env.ADMIN_PASSWORD || !env.SESSION_SECRET) {
+    return json({ error: "Giriş sistemi yapılandırması eksik." }, 503);
+  }
+
+  if (new URL(request.url).protocol !== "https:") {
+    return json({ error: "Güvenli HTTPS bağlantısı gerekli." }, 403);
   }
 
   if (request.headers.get("Origin") !== new URL(request.url).origin) {
@@ -38,9 +45,19 @@ export async function onRequestPost({ request, env }) {
     return json({ error: "Kullanıcı adı veya şifre hatalı." }, 401);
   }
 
-  // Oturum imzalama ve güvenli cookie,
-  // ortak kimlik doğrulama modülü eklendiğinde tamamlanacak.
-  return json({
-    error: "Oturum güvenliği henüz tamamlanmadı. Lütfen sonraki kurulumu bekleyin."
-  }, 501);
+  try {
+    const token = await createSession(env.SESSION_SECRET);
+
+    return json(
+      { success: true },
+      200,
+      {
+        "Set-Cookie":
+          `hypium_session=${token}; Path=/; Max-Age=28800; HttpOnly; Secure; SameSite=Strict`
+      }
+    );
+  } catch {
+    return json({ error: "Oturum oluşturulamadı." }, 500);
+  }
 }
+
