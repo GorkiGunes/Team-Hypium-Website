@@ -4,50 +4,234 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Hypium | Admin Dashboard</title>
-  <link rel="stylesheet" href="./admin.css">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#00304d">
+  <title>Hypium | Yönetim Paneli</title>
+  <link rel="stylesheet" href="./admin.css?v=2">
 </head>
 <body>
-  <div class="admin-layout">
-    <aside class="admin-sidebar">
-      <div class="admin-brand">
-        <img src="../assets/logo.png" alt="Hypium"
-             onerror="this.style.display='none'">
-        <div>
+  <div class="shell">
+
+    <aside class="sidebar">
+      <a class="brand" href="/admin/" aria-label="Hypium Admin">
+        <img class="brand-logo"
+             src="../assets/logo.png"
+             alt="Hypium logosu">
+        <span class="brand-text">
           <strong>HYPIUM</strong>
-          <div class="admin-muted">Yönetim Paneli</div>
+          <small>FRC TEAM #11920</small>
+          <small class="admin-label">YÖNETİM PANELİ</small>
+        </span>
+      </a>
+
+      <div class="side-label">İÇERİK YÖNETİMİ</div>
+
+      <nav id="navigation" class="navigation"
+           aria-label="Yönetim menüsü">
+        <button class="nav-item active" data-type="announcements">
+          <span class="nav-icon">◈</span>
+          <span>Duyurular</span>
+        </button>
+        <button class="nav-item" data-type="posts">
+          <span class="nav-icon">▤</span>
+          <span>Haberler ve yazılar</span>
+        </button>
+        <button class="nav-item" data-type="projects">
+          <span class="nav-icon">✳</span>
+          <span>Sosyal sorumluluk</span>
+        </button>
+        <button class="nav-item" data-type="gallery">
+          <span class="nav-icon">▧</span>
+          <span>Galeri ve fotoğraflar</span>
+        </button>
+        <button class="nav-item" data-type="members">
+          <span class="nav-icon">♙</span>
+          <span>Takım üyeleri</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <span class="online-dot"></span>
+        <span>Hypium Yönetim Sistemi</span>
+        <small>FIRST Robotics Competition</small>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="page-heading">
+          <div class="eyebrow">HYPIUM / ADMINISTRATION</div>
+          <h1 id="pageTitle">Duyurular</h1>
+          <p>Takım içeriklerini tek bir yerden yönet.</p>
+        </div>
+
+        <div class="user-area">
+          <div class="user-avatar" id="userAvatar">H</div>
+          <div class="user-details">
+            <strong id="userEmail">Giriş yapan yetkili</strong>
+            <small>Yönetici hesabı</small>
+          </div>
+          <button id="logoutBtn" class="btn btn-quiet" type="button">
+            Çıkış
+          </button>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <div class="welcome-tag">FRC TEAM #11920</div>
+          <h2>Hoş geldin, Hypium ekibi.</h2>
+          <p>
+            Haberleri, duyuruları ve takım içeriklerini buradan
+            düzenleyebilirsin.
+          </p>
+        </div>
+        <button id="newBtn" class="btn btn-primary" type="button">
+          <span aria-hidden="true">＋</span> Yeni duyuru
+        </button>
+      </section>
+
+      <section class="stats" aria-label="İçerik istatistikleri">
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Toplam kayıt</span>
+            <span class="stat-icon">▤</span>
+          </div>
+          <strong id="totalCount">—</strong>
+          <small>Seçili bölümde</small>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Yayında</span>
+            <span class="stat-icon amber">↗</span>
+          </div>
+          <strong id="publishedCount">—</strong>
+          <small>Ziyaretçilere açık</small>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-top">
+            <span class="stat-label">Taslaklar</span>
+            <span class="stat-icon">✎</span>
+          </div>
+          <strong id="draftCount">—</strong>
+          <small>Henüz yayımlanmamış</small>
+        </article>
+      </section>
+
+      <section class="content-card">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">İÇERİK MERKEZİ</div>
+            <h2 id="listTitle">Duyuru listesi</h2>
+            <p>Kayıtlarını görüntüle, düzenle veya yenile.</p>
+          </div>
+          <button class="btn btn-outline" id="refreshBtn" type="button">
+            ↻ Yenile
+          </button>
+        </div>
+
+        <div id="notice" class="notice" role="status" hidden></div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>İÇERİK</th>
+                <th>DURUM</th>
+                <th>SON GÜNCELLEME</th>
+                <th>İŞLEM</th>
+              </tr>
+            </thead>
+            <tbody id="itemsBody">
+              <tr>
+                <td colspan="4" class="empty">İçerikler yükleniyor…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        <span class="footer-mark">H</span>
+        <span>HYPIUM FRC TEAM #11920</span>
+        <span class="footer-separator">/</span>
+        <span>Yönetim paneli</span>
+      </footer>
+    </main>
+  </div>
+
+  <dialog id="editorDialog" class="editor-dialog">
+    <form id="editorForm" method="dialog">
+      <div class="dialog-head">
+        <div>
+          <div class="eyebrow">HYPIUM / İÇERİK EDİTÖRÜ</div>
+          <h2 id="editorTitle">Yeni içerik</h2>
+        </div>
+        <button type="button" id="closeDialog"
+                class="close-btn" aria-label="Kapat">×</button>
+      </div>
+
+      <input type="hidden" id="itemId">
+
+      <label for="itemTitle">Başlık <span>*</span></label>
+      <input id="itemTitle" maxlength="180" required
+             placeholder="İçerik başlığını yaz">
+
+      <label for="itemSummary">Kısa açıklama</label>
+      <textarea id="itemSummary" rows="2" maxlength="600"
+                placeholder="Kısa bir açıklama ekle"></textarea>
+
+      <label for="itemBody">İçerik ve ayrıntılar</label>
+      <textarea id="itemBody" rows="5" maxlength="20000"
+                placeholder="İçerik metnini buraya yaz"></textarea>
+
+      <label for="imageFile">Görsel dosyası</label>
+      <div class="upload-row">
+        <input id="imageFile" type="file"
+               accept="image/jpeg,image/png,image/webp,image/gif">
+        <button id="uploadBtn" type="button" class="btn btn-outline">
+          Görsel yükle
+        </button>
+      </div>
+
+      <label for="itemImage">Görsel adresi</label>
+      <input id="itemImage" maxlength="1000"
+             placeholder="Yüklenen görselin adresi">
+
+      <p class="field-help">
+        JPG, PNG, WEBP veya GIF · En fazla 8 MB
+      </p>
+      <div id="imagePreview" class="image-preview" hidden></div>
+
+      <div class="form-grid">
+        <div>
+          <label for="itemStatus">Yayın durumu</label>
+          <select id="itemStatus">
+            <option value="draft">Taslak</option>
+            <option value="published">Yayında</option>
+          </select>
+        </div>
+        <div>
+          <label for="itemOrder">Sıralama</label>
+          <input id="itemOrder" type="number" min="0"
+                 max="99999" value="0">
         </div>
       </div>
 
-      <nav class="admin-nav" aria-label="Yönetim menüsü">
-        <a href="#overview" aria-current="page">Genel Bakış</a>
-        <a href="#news">Haberler</a>
-        <a href="#announcements">Duyurular</a>
-        <a href="#impact">Sosyal Sorumluluk</a>
-        <a href="#gallery">Galeri</a>
-        <a href="#team">Takım Üyeleri</a>
-        <a href="#settings">Ayarlar</a>
-      </nav>
-    </aside>
-
-    <main class="admin-main" id="overview">
-      <p class="admin-muted">HYPIUM FRC #11920</p>
-      <h1>Genel Bakış</h1>
-      <p class="admin-muted">
-        Takımının web sitesi içeriklerini buradan yöneteceksin.
-      </p>
-
-      <div class="admin-card">
-        <h2>Yönetim paneli hazırlanıyor</h2>
-        <p>
-          Bu arayüz henüz veritabanına bağlı değil.
-          İçerikler kalıcı olarak kaydedilene kadar burada
-          haber yayımlama işlemi yapılmamalıdır.
-        </p>
+      <div class="dialog-actions">
+        <button type="button" id="cancelBtn" class="btn btn-quiet">
+          Vazgeç
+        </button>
+        <button type="submit" id="saveBtn" class="btn btn-primary">
+          Kaydet
+        </button>
       </div>
-    </main>
-  </div>
+    </form>
+  </dialog>
+
+  <script src="./admin.js?v=2" defer></script>
 </body>
 </html>
 
