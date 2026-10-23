@@ -1,5 +1,5 @@
 
-import { createSession } from "../../../_lib/auth.js";
+import { createSession } from "../../_lib/auth.js";
 
 function json(data, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(data), {
