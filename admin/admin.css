@@ -934,3 +934,126 @@ textarea {
   }
 }
 
+/* ========================================
+   HYPIUM IMPACT YÖNETİMİ
+   ======================================== */
+
+.impact-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 22px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.impact-tabs .small-btn {
+  min-height: 36px;
+  padding: 9px 14px;
+  font-size: 11px;
+}
+
+.impact-tabs .small-btn.active {
+  border-color: var(--blue);
+  background: var(--navy);
+  color: white;
+}
+
+#sectionTools > .field-help {
+  margin: 0;
+  padding: 0 22px 16px;
+  line-height: 1.7;
+}
+
+#sectionTools:empty {
+  display: none;
+}
+
+/* Çok dilli alanlar */
+
+.impact-language {
+  min-width: 0;
+  margin: 18px 0;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #f8fbfd;
+}
+
+.impact-language legend {
+  padding: 0 7px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.impact-language label {
+  margin-top: 12px;
+}
+
+.impact-language textarea {
+  min-height: 75px;
+}
+
+/* Impact form başlıkları */
+
+#impactEditorDialog h3 {
+  margin: 24px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--navy);
+  font-size: 14px;
+}
+
+/* Fotoğraf yükleme alanı */
+
+.impact-media-form {
+  max-width: 620px;
+  margin: 4px auto;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #f8fbfd;
+}
+
+.impact-media-form label {
+  margin-top: 14px;
+}
+
+.impact-media-form button {
+  margin-top: 16px;
+}
+
+.impact-media-form input[type="file"] {
+  padding: 12px;
+  background: white;
+}
+
+#itemsBody img {
+  background: #edf4f8;
+}
+
+/* Mobil uyumluluk */
+
+@media (max-width: 600px) {
+  .impact-tabs {
+    gap: 6px;
+    padding: 0 14px 13px;
+  }
+
+  .impact-tabs .small-btn {
+    flex: 1 1 auto;
+    padding: 9px 10px;
+  }
+
+  #sectionTools > .field-help {
+    padding: 0 14px 13px;
+  }
+
+  .impact-language {
+    padding: 11px;
+  }
+
+  .impact-media-form {
+    padding: 12px;
+  }
+}
