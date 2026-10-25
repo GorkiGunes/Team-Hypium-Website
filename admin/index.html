@@ -1,4 +1,4 @@
-
+```html
 <!doctype html>
 <html lang="tr">
 <head>
@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#00304d">
   <title>Hypium | Yönetim Paneli</title>
-  <link rel="stylesheet" href="./admin.css?v=2">
+  <link rel="stylesheet" href="./admin.css?v=3">
 </head>
 <body>
   <div class="shell">
@@ -28,23 +28,39 @@
 
       <nav id="navigation" class="navigation"
            aria-label="Yönetim menüsü">
-        <button class="nav-item active" data-type="announcements">
+
+        <button class="nav-item active"
+                data-type="announcements" type="button">
           <span class="nav-icon">◈</span>
           <span>Duyurular</span>
         </button>
-        <button class="nav-item" data-type="posts">
+
+        <button class="nav-item"
+                data-type="posts" type="button">
           <span class="nav-icon">▤</span>
           <span>Haberler ve yazılar</span>
         </button>
-        <button class="nav-item" data-type="projects">
+
+        <button class="nav-item"
+                data-type="projects" type="button">
           <span class="nav-icon">✳</span>
           <span>Sosyal sorumluluk</span>
         </button>
-        <button class="nav-item" data-type="gallery">
+
+        <button class="nav-item"
+                data-type="impactAdmin" type="button">
+          <span class="nav-icon">◎</span>
+          <span>Impact Yönetimi</span>
+        </button>
+
+        <button class="nav-item"
+                data-type="gallery" type="button">
           <span class="nav-icon">▧</span>
           <span>Galeri ve fotoğraflar</span>
         </button>
-        <button class="nav-item" data-type="members">
+
+        <button class="nav-item"
+                data-type="members" type="button">
           <span class="nav-icon">♙</span>
           <span>Takım üyeleri</span>
         </button>
@@ -68,7 +84,7 @@
         <div class="user-area">
           <div class="user-avatar" id="userAvatar">H</div>
           <div class="user-details">
-            <strong id="userEmail">Giriş yapan yetkili</strong>
+            <strong id="userEmail">Yetkili oturumu</strong>
             <small>Yönetici hesabı</small>
           </div>
           <button id="logoutBtn" class="btn btn-quiet" type="button">
@@ -81,11 +97,12 @@
         <div>
           <div class="welcome-tag">FRC TEAM #11920</div>
           <h2>Hoş geldin, Hypium ekibi.</h2>
-          <p>
+          <p id="welcomeDescription">
             Haberleri, duyuruları ve takım içeriklerini buradan
             düzenleyebilirsin.
           </p>
         </div>
+
         <button id="newBtn" class="btn btn-primary" type="button">
           <span aria-hidden="true">＋</span> Yeni duyuru
         </button>
@@ -125,8 +142,11 @@
           <div>
             <div class="eyebrow">İÇERİK MERKEZİ</div>
             <h2 id="listTitle">Duyuru listesi</h2>
-            <p>Kayıtlarını görüntüle, düzenle veya yenile.</p>
+            <p id="listDescription">
+              Kayıtlarını görüntüle, düzenle veya yenile.
+            </p>
           </div>
+
           <button class="btn btn-outline" id="refreshBtn" type="button">
             ↻ Yenile
           </button>
@@ -134,9 +154,12 @@
 
         <div id="notice" class="notice" role="status" hidden></div>
 
+        <!-- JavaScript, seçili bölüme ait kayıtları burada gösterir. -->
+        <div id="sectionTools"></div>
+
         <div class="table-wrap">
           <table>
-            <thead>
+            <thead id="tableHead">
               <tr>
                 <th>İÇERİK</th>
                 <th>DURUM</th>
@@ -144,9 +167,12 @@
                 <th>İŞLEM</th>
               </tr>
             </thead>
+
             <tbody id="itemsBody">
               <tr>
-                <td colspan="4" class="empty">İçerikler yükleniyor…</td>
+                <td colspan="4" class="empty">
+                  İçerikler yükleniyor…
+                </td>
               </tr>
             </tbody>
           </table>
@@ -169,6 +195,7 @@
           <div class="eyebrow">HYPIUM / İÇERİK EDİTÖRÜ</div>
           <h2 id="editorTitle">Yeni içerik</h2>
         </div>
+
         <button type="button" id="closeDialog"
                 class="close-btn" aria-label="Kapat">×</button>
       </div>
@@ -191,6 +218,7 @@
       <div class="upload-row">
         <input id="imageFile" type="file"
                accept="image/jpeg,image/png,image/webp,image/gif">
+
         <button id="uploadBtn" type="button" class="btn btn-outline">
           Görsel yükle
         </button>
@@ -203,6 +231,7 @@
       <p class="field-help">
         JPG, PNG, WEBP veya GIF · En fazla 8 MB
       </p>
+
       <div id="imagePreview" class="image-preview" hidden></div>
 
       <div class="form-grid">
@@ -213,6 +242,7 @@
             <option value="published">Yayında</option>
           </select>
         </div>
+
         <div>
           <label for="itemOrder">Sıralama</label>
           <input id="itemOrder" type="number" min="0"
@@ -224,6 +254,7 @@
         <button type="button" id="cancelBtn" class="btn btn-quiet">
           Vazgeç
         </button>
+
         <button type="submit" id="saveBtn" class="btn btn-primary">
           Kaydet
         </button>
@@ -231,7 +262,7 @@
     </form>
   </dialog>
 
-  <script src="./admin.js?v=2" defer></script>
+  <script src="./admin.js?v=3" defer></script>
 </body>
 </html>
-
+```
